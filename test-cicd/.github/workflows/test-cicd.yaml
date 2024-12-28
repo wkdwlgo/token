@@ -1,0 +1,30 @@
+name: Next.js CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Next.js는 최신 LTS 버전에서 작동 권장
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Build the project (using next dev)
+      - name: Run Next.js dev
+        run: npm run dev
+
